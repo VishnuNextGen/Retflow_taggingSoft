@@ -55,11 +55,11 @@ function App() {
       <Toaster position="top-right" />
       
       {/* Header */}
-      <div className="h-16 bg-white border-b border-gray-200 flex items-center px-6 shadow-sm">
-        <h1 className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+      <div className="h-12 bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700 flex items-center px-4 shadow-md">
+        <h1 className="text-lg font-bold text-white tracking-tight" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
           RefFlow
         </h1>
-        <p className="ml-4 text-sm text-gray-500">Professional Football Video Tagging</p>
+        <p className="ml-3 text-xs text-slate-300">Professional Video Tagging</p>
       </div>
 
       {/* Main Content */}
