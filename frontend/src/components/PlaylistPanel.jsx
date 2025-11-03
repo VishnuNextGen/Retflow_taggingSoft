@@ -204,12 +204,12 @@ export const PlaylistPanel = () => {
       </div>
 
       {/* Playlist Tabs */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+      <div className="flex gap-1.5 mb-3 overflow-x-auto pb-1">
         {playlists.map((playlist) => (
           <button
             key={playlist.id}
             onClick={() => setActivePlaylist(playlist.id)}
-            className={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
+            className={`px-2.5 py-1.5 rounded-md text-xs font-medium whitespace-nowrap transition-colors ${
               playlist.isActive
                 ? 'bg-blue-500 text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-100'
@@ -225,16 +225,16 @@ export const PlaylistPanel = () => {
       </div>
 
       {/* Search Events */}
-      <div className="mb-4">
+      <div className="mb-3">
         <Input
           placeholder="Search events"
-          className="w-full"
+          className="w-full h-8 text-xs"
           data-testid="search-events-input"
         />
       </div>
 
       {/* Events List */}
-      <div className="flex-1 overflow-y-auto space-y-2 mb-4">
+      <div className="flex-1 overflow-y-auto space-y-1.5 mb-3">
         {activePlaylist ? (
           activePlaylist.events.length > 0 ? (
             activePlaylist.events.map((eventId) => {
