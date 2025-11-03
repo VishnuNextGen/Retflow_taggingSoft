@@ -245,32 +245,34 @@ export const PlaylistPanel = () => {
               return (
                 <div
                   key={eventId}
-                  className="bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white p-2 rounded-md shadow-sm hover:shadow-md transition-shadow"
                   data-testid={`playlist-event-${eventId}`}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     <div
-                      className="w-3 h-3 rounded"
+                      className="w-2 h-2 rounded"
                       style={{ backgroundColor: tag.color }}
                     />
-                    <span className="font-medium text-sm">{tag.name}</span>
+                    <span className="font-medium text-xs">{tag.name}</span>
                   </div>
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-xs text-gray-500 mt-0.5">
                     {formatTime(event.startTime)} - {formatTime(event.endTime)}
                   </div>
-                  <div className="flex gap-1 mt-2">
+                  <div className="flex gap-1 mt-1.5">
                     <Button
                       variant="outline"
                       size="sm"
+                      className="h-6 text-xs px-2"
                       onClick={() => jumpToTime(event.startTime)}
                       data-testid={`play-event-${eventId}`}
                     >
-                      <Play className="h-3 w-3 mr-1" />
+                      <Play className="h-3 w-3 mr-0.5" />
                       Play
                     </Button>
                     <Button
                       variant="outline"
                       size="sm"
+                      className="h-6 px-2"
                       onClick={() => removeEventFromPlaylist(activePlaylist.id, eventId)}
                       data-testid={`remove-event-${eventId}`}
                     >
