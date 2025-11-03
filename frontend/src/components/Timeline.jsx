@@ -182,7 +182,7 @@ export const Timeline = () => {
         {/* Active recording indicator */}
         {activeRecording && (
           <div
-            className="absolute top-8 h-6 rounded animate-pulse"
+            className="absolute top-6 h-6 rounded animate-pulse"
             style={{
               left: `${(activeRecording.startTime / videoDuration) * 100}%`,
               width: `${((currentTime - activeRecording.startTime) / videoDuration) * 100}%`,
