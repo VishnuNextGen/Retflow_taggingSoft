@@ -112,11 +112,16 @@ export const PlaylistPanel = () => {
       for (let i = 0; i < events.length; i++) {
         const event = events[i];
         const duration = event.endTime - event.startTime;
+        
+        // Use accurate seeking with re-encoding to avoid random frames
         await ffmpeg.exec([
-          '-i', 'input.mp4',
           '-ss', event.startTime.toString(),
+          '-i', 'input.mp4',
           '-t', duration.toString(),
-          '-c', 'copy',
+          '-c:v', 'libx264',
+          '-preset', 'ultrafast',
+          '-c:a', 'aac',
+          '-avoid_negative_ts', '1',
           `clip${i}.mp4`
         ]);
         filterComplex += `file 'clip${i}.mp4'\n`;
