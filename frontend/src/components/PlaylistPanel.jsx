@@ -107,21 +107,22 @@ export const PlaylistPanel = () => {
         .filter(Boolean)
         .sort((a, b) => a.startTime - b.startTime);
 
-      // Create clips with accurate seeking
+      // Create clips with accurate seeking (using -ss after -i for frame accuracy)
       const clipFiles = [];
       for (let i = 0; i < events.length; i++) {
         const event = events[i];
         const duration = event.endTime - event.startTime;
         
-        // Accurate seeking: seek before input, then re-encode
+        // Frame-accurate seeking: -ss AFTER -i with re-encoding
         await ffmpeg.exec([
-          '-ss', event.startTime.toFixed(3),
           '-i', 'input.mp4',
+          '-ss', event.startTime.toFixed(3),
           '-t', duration.toFixed(3),
-          '-vcodec', 'libx264',
-          '-acodec', 'aac',
+          '-c:v', 'libx264',
+          '-c:a', 'aac',
           '-preset', 'fast',
-          '-movflags', '+faststart',
+          '-avoid_negative_ts', 'make_zero',
+          '-fflags', '+genpts',
           '-y',
           `clip${i}.mp4`
         ]);
