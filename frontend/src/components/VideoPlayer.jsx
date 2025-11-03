@@ -1,19 +1,25 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useVideoStore } from '../store/useVideoStore';
 import { Play, Pause, SkipBack, SkipForward, Maximize } from 'lucide-react';
 import { Button } from './ui/button';
 
 export const VideoPlayer = () => {
   const videoRef = useRef(null);
+  const progressBarRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  
   const {
     videoSrc,
     isPlaying,
     playbackSpeed,
+    currentTime,
+    videoDuration,
     setVideoRef,
     setVideoDuration,
     setCurrentTime,
     setIsPlaying,
     setPlaybackSpeed,
+    jumpToTime,
   } = useVideoStore();
 
   useEffect(() => {
