@@ -162,7 +162,7 @@ export const Timeline = () => {
           return (
             <div
               key={event.id}
-              className="absolute top-8 h-6 rounded cursor-pointer hover:opacity-80 transition-opacity"
+              className="absolute top-6 h-6 rounded cursor-pointer hover:opacity-80 transition-opacity"
               style={{
                 left: `${startPercent}%`,
                 width: `${widthPercent}%`,
