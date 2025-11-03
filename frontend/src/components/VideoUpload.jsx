@@ -22,7 +22,7 @@ export const VideoUpload = () => {
   };
 
   return (
-    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+    <div className="absolute top-3 left-1/2 transform -translate-x-1/2 z-10">
       <input
         ref={fileInputRef}
         type="file"
@@ -33,10 +33,10 @@ export const VideoUpload = () => {
       />
       <Button
         onClick={() => fileInputRef.current?.click()}
-        className="bg-blue-500 hover:bg-blue-600"
+        className="bg-blue-500 hover:bg-blue-600 h-8 text-xs px-3"
         data-testid="upload-video-btn"
       >
-        <Upload className="h-4 w-4 mr-2" />
+        <Upload className="h-3 w-3 mr-1.5" />
         Upload Video
       </Button>
     </div>
