@@ -142,10 +142,11 @@ export const VideoPlayer = () => {
               ref={progressBarRef}
               className="w-full h-1.5 bg-white/30 rounded-full cursor-pointer mb-3 group"
               onMouseDown={handleProgressMouseDown}
+              onClick={handleProgressBarClick}
               data-testid="video-progress-bar"
             >
               <div 
-                className="h-full bg-blue-500 rounded-full relative transition-all group-hover:bg-blue-400"
+                className="h-full bg-blue-500 rounded-full relative transition-all group-hover:bg-blue-400 pointer-events-none"
                 style={{ width: `${progressPercentage}%` }}
               >
                 <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
