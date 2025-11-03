@@ -74,54 +74,58 @@ export const Timeline = () => {
   const progressPercentage = videoDuration ? (currentTime / videoDuration) * 100 : 0;
 
   return (
-    <div className="bg-gray-50 border-t border-gray-200 p-4" data-testid="timeline-container">
+    <div className="bg-slate-50 border-t border-gray-200 p-3" data-testid="timeline-container">
       {/* Controls */}
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-1.5">
           <Button
             variant="outline"
             size="sm"
+            className="h-7 text-xs px-2"
             onClick={jumpToPrevTag}
             data-testid="prev-tag-btn"
           >
-            <ChevronLeft className="h-4 w-4 mr-1" />
-            Previous
+            <ChevronLeft className="h-3 w-3 mr-0.5" />
+            Prev
           </Button>
           <Button
             variant="outline"
             size="sm"
+            className="h-7 text-xs px-2"
             onClick={jumpToNextTag}
             data-testid="next-tag-btn"
           >
             Next
-            <ChevronRight className="h-4 w-4 ml-1" />
+            <ChevronRight className="h-3 w-3 ml-0.5" />
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-600">
+        <div className="flex items-center gap-1.5">
+          <span className="text-xs text-gray-600">
             {formatTime(currentTime)} / {formatTime(videoDuration)}
           </span>
           <Button
             variant="outline"
             size="icon"
+            className="h-7 w-7"
             onClick={() => setTimelineZoom(timelineZoom - 0.2)}
             disabled={timelineZoom <= 0.5}
             data-testid="zoom-out-btn"
           >
-            <ZoomOut className="h-4 w-4" />
+            <ZoomOut className="h-3 w-3" />
           </Button>
-          <span className="text-xs text-gray-500 w-12 text-center">
+          <span className="text-xs text-gray-500 w-10 text-center">
             {timelineZoom.toFixed(1)}x
           </span>
           <Button
             variant="outline"
             size="icon"
+            className="h-7 w-7"
             onClick={() => setTimelineZoom(timelineZoom + 0.2)}
             disabled={timelineZoom >= 5}
             data-testid="zoom-in-btn"
           >
-            <ZoomIn className="h-4 w-4" />
+            <ZoomIn className="h-3 w-3" />
           </Button>
         </div>
       </div>
@@ -129,7 +133,7 @@ export const Timeline = () => {
       {/* Timeline */}
       <div
         ref={containerRef}
-        className="relative h-16 bg-gray-200 rounded-lg cursor-pointer overflow-hidden"
+        className="relative h-14 bg-gray-200 rounded-md cursor-pointer overflow-hidden"
         onMouseDown={handleMouseDown}
         data-testid="timeline-track"
       >
