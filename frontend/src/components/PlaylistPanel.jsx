@@ -175,13 +175,13 @@ export const PlaylistPanel = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-50 p-4" data-testid="playlist-panel">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Playlist</h2>
+    <div className="h-full flex flex-col bg-slate-50 p-3" data-testid="playlist-panel">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-base font-semibold text-gray-900">Playlist</h2>
         <Dialog open={showAddPlaylist} onOpenChange={setShowAddPlaylist}>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" data-testid="add-playlist-btn">
-              <FolderPlus className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-7 w-7" data-testid="add-playlist-btn">
+              <FolderPlus className="h-4 w-4" />
             </Button>
           </DialogTrigger>
           <DialogContent data-testid="add-playlist-dialog">
