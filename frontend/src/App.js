@@ -91,7 +91,7 @@ function App() {
         </div>
 
         {/* Bottom - Timeline */}
-        <div className="h-32">
+        <div className="h-28">
           <Timeline />
         </div>
       </div>
