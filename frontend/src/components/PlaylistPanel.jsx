@@ -339,33 +339,33 @@ export const PlaylistPanel = () => {
 
       {/* Action Buttons */}
       {activePlaylist && (
-        <div className="space-y-2 border-t pt-4">
+        <div className="space-y-1.5 border-t pt-3">
           <Button
             variant="default"
-            className="w-full bg-blue-500 hover:bg-blue-600"
+            className="w-full h-8 bg-blue-500 hover:bg-blue-600 text-xs"
             onClick={handlePlayAll}
             disabled={activePlaylist.events.length === 0}
             data-testid="play-all-btn"
           >
-            <Play className="h-4 w-4 mr-2" />
+            <Play className="h-3 w-3 mr-1.5" />
             Play All
           </Button>
           
           <Button
             variant="default"
-            className="w-full bg-orange-500 hover:bg-orange-600"
+            className="w-full h-8 bg-orange-500 hover:bg-orange-600 text-xs"
             onClick={() => handleExport(activePlaylist.id)}
             disabled={activePlaylist.events.length === 0 || isExporting}
             data-testid="export-btn"
           >
             {isExporting ? (
               <>
-                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                <Loader2 className="h-3 w-3 mr-1.5 animate-spin" />
                 Exporting {exportProgress}%
               </>
             ) : (
               <>
-                <Download className="h-4 w-4 mr-2" />
+                <Download className="h-3 w-3 mr-1.5" />
                 Export Folder
               </>
             )}
@@ -373,7 +373,7 @@ export const PlaylistPanel = () => {
 
           <Button
             variant="outline"
-            className="w-full text-red-500 hover:bg-red-50"
+            className="w-full h-8 text-red-500 hover:bg-red-50 text-xs"
             onClick={() => {
               if (window.confirm('Delete this playlist?')) {
                 deletePlaylist(activePlaylist.id);
@@ -382,7 +382,7 @@ export const PlaylistPanel = () => {
             }}
             data-testid="delete-playlist-btn"
           >
-            <Trash2 className="h-4 w-4 mr-2" />
+            <Trash2 className="h-3 w-3 mr-1.5" />
             Delete Playlist
           </Button>
         </div>
