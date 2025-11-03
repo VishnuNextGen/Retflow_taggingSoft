@@ -135,10 +135,11 @@ export const Timeline = () => {
         ref={containerRef}
         className="relative h-14 bg-gray-200 rounded-md cursor-pointer overflow-hidden"
         onMouseDown={handleMouseDown}
+        onClick={handleTimelineClick}
         data-testid="timeline-track"
       >
         {/* Time markers */}
-        <div className="absolute inset-0 flex items-start pt-1">
+        <div className="absolute inset-0 flex items-start pt-1 pointer-events-none">
           {Array.from({ length: Math.ceil(videoDuration / 10) }).map((_, i) => (
             <div
               key={i}
@@ -162,16 +163,13 @@ export const Timeline = () => {
           return (
             <div
               key={event.id}
-              className="absolute top-6 h-6 rounded cursor-pointer hover:opacity-80 transition-opacity"
+              className="absolute top-6 h-6 rounded hover:opacity-80 transition-opacity"
               style={{
                 left: `${startPercent}%`,
                 width: `${widthPercent}%`,
                 backgroundColor: tag.color,
                 minWidth: '2px',
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                jumpToTime(event.startTime);
+                pointerEvents: 'none',
               }}
               title={`${tag.name}: ${formatTime(event.startTime)} - ${formatTime(event.endTime)}`}
               data-testid={`timeline-marker-${event.id}`}
@@ -182,7 +180,7 @@ export const Timeline = () => {
         {/* Active recording indicator */}
         {activeRecording && (
           <div
-            className="absolute top-6 h-6 rounded animate-pulse"
+            className="absolute top-6 h-6 rounded animate-pulse pointer-events-none"
             style={{
               left: `${(activeRecording.startTime / videoDuration) * 100}%`,
               width: `${((currentTime - activeRecording.startTime) / videoDuration) * 100}%`,
@@ -194,13 +192,13 @@ export const Timeline = () => {
 
         {/* Progress bar */}
         <div
-          className="absolute top-0 bottom-0 bg-white/30"
+          className="absolute top-0 bottom-0 bg-white/30 pointer-events-none"
           style={{ width: `${progressPercentage}%` }}
         />
 
         {/* Playhead */}
         <div
-          className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-10"
+          className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-10 pointer-events-none"
           style={{ left: `${progressPercentage}%` }}
           data-testid="timeline-playhead"
         >
