@@ -75,13 +75,13 @@ export const TaggingPanel = () => {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-50 p-4" data-testid="tagging-panel">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">Tagging</h2>
+    <div className="h-full flex flex-col bg-slate-50 p-3" data-testid="tagging-panel">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-base font-semibold text-gray-900">Tagging</h2>
         <Dialog open={showSettings} onOpenChange={setShowSettings}>
           <DialogTrigger asChild>
-            <Button variant="ghost" size="icon" data-testid="settings-btn">
-              <Settings className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="h-7 w-7" data-testid="settings-btn">
+              <Settings className="h-4 w-4" />
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-md" data-testid="settings-dialog">
