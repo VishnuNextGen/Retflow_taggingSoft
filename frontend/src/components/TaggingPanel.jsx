@@ -217,7 +217,6 @@ export const TaggingPanel = () => {
           })}
         </div>
       </div>
-      </div>
     </div>
   );
 };
