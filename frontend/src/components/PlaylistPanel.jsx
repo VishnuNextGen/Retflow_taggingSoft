@@ -107,28 +107,33 @@ export const PlaylistPanel = () => {
         .filter(Boolean)
         .sort((a, b) => a.startTime - b.startTime);
 
-      // Create filter for concatenation
-      let filterComplex = '';
+      // Create clips with accurate seeking
+      const clipFiles = [];
       for (let i = 0; i < events.length; i++) {
         const event = events[i];
         const duration = event.endTime - event.startTime;
         
-        // Use accurate seeking with re-encoding to avoid random frames
+        // Accurate seeking: seek before input, then re-encode
         await ffmpeg.exec([
-          '-ss', event.startTime.toString(),
+          '-ss', event.startTime.toFixed(3),
           '-i', 'input.mp4',
-          '-t', duration.toString(),
-          '-c:v', 'libx264',
-          '-preset', 'ultrafast',
-          '-c:a', 'aac',
-          '-avoid_negative_ts', '1',
+          '-t', duration.toFixed(3),
+          '-vcodec', 'libx264',
+          '-acodec', 'aac',
+          '-preset', 'fast',
+          '-movflags', '+faststart',
+          '-y',
           `clip${i}.mp4`
         ]);
-        filterComplex += `file 'clip${i}.mp4'\n`;
+        clipFiles.push(`clip${i}.mp4`);
       }
 
-      // Write concat file
-      await ffmpeg.writeFile('concat.txt', filterComplex);
+      // Create concat file
+      let concatContent = '';
+      for (let i = 0; i < clipFiles.length; i++) {
+        concatContent += `file '${clipFiles[i]}'\n`;
+      }
+      await ffmpeg.writeFile('concat.txt', concatContent);
 
       // Concatenate clips
       await ffmpeg.exec([
@@ -136,6 +141,7 @@ export const PlaylistPanel = () => {
         '-safe', '0',
         '-i', 'concat.txt',
         '-c', 'copy',
+        '-y',
         'output.mp4'
       ]);
 
