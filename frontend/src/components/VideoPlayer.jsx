@@ -67,6 +67,55 @@ export const VideoPlayer = () => {
     }
   };
 
+  const handleProgressBarClick = (e) => {
+    if (!progressBarRef.current || !videoDuration) return;
+    
+    const rect = progressBarRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = x / rect.width;
+    const time = percentage * videoDuration;
+    jumpToTime(time);
+  };
+
+  const handleProgressMouseDown = (e) => {
+    setIsDragging(true);
+    handleProgressBarClick(e);
+  };
+
+  const handleProgressMouseMove = (e) => {
+    if (isDragging) {
+      handleProgressBarClick(e);
+    }
+  };
+
+  const handleProgressMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  useEffect(() => {
+    if (isDragging) {
+      const moveHandler = (e) => handleProgressMouseMove(e);
+      const upHandler = () => handleProgressMouseUp();
+      
+      window.addEventListener('mousemove', moveHandler);
+      window.addEventListener('mouseup', upHandler);
+      
+      return () => {
+        window.removeEventListener('mousemove', moveHandler);
+        window.removeEventListener('mouseup', upHandler);
+      };
+    }
+  }, [isDragging, videoDuration]);
+
+  const formatTime = (seconds) => {
+    if (!seconds || isNaN(seconds)) return '00:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const progressPercentage = videoDuration ? (currentTime / videoDuration) * 100 : 0;
+
   return (
     <div className="relative w-full h-full bg-black rounded-lg overflow-hidden" data-testid="video-player-container">
       {!videoSrc ? (
