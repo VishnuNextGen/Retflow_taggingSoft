@@ -54,14 +54,18 @@ export const Timeline = () => {
 
   useEffect(() => {
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      const moveHandler = (e) => handleMouseMove(e);
+      const upHandler = () => handleMouseUp();
+      
+      window.addEventListener('mousemove', moveHandler);
+      window.addEventListener('mouseup', upHandler);
+      
       return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        window.removeEventListener('mouseup', handleMouseUp);
+        window.removeEventListener('mousemove', moveHandler);
+        window.removeEventListener('mouseup', upHandler);
       };
     }
-  }, [isDragging]);
+  }, [isDragging, videoDuration]);
 
   const filteredEvents = selectedTagFilter
     ? tagEvents.filter(e => e.tagId === selectedTagFilter)
