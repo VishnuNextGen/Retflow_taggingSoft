@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import '@/App.css';
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from 'react-resizable-panels';
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from './components/ui/resizable';
 import { useVideoStore } from './store/useVideoStore';
 import { TaggingPanel } from './components/TaggingPanel';
 import { VideoPlayer } from './components/VideoPlayer';
