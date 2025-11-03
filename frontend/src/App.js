@@ -63,7 +63,7 @@ function App() {
       </div>
 
       {/* Main Content */}
-      <div className="h-[calc(100vh-4rem)] flex flex-col">
+      <div className="h-[calc(100vh-3rem)] flex flex-col">
         <div className="flex-1 overflow-hidden">
           <ResizablePanelGroup direction="horizontal">
             {/* Left Panel - Tagging */}
