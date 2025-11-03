@@ -210,7 +210,7 @@ export const Timeline = () => {
 
       {/* Legend */}
       {selectedTagFilter && (
-        <div className="mt-2 text-xs text-gray-600">
+        <div className="mt-1.5 text-xs text-gray-600">
           Showing: {tags.find(t => t.id === selectedTagFilter)?.name || 'Unknown'}
         </div>
       )}
