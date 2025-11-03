@@ -168,52 +168,55 @@ export const TaggingPanel = () => {
         </Dialog>
       </div>
 
-      <div className="flex items-center gap-2 mb-4 p-3 bg-white rounded-lg shadow-sm">
-        <span className="text-sm font-medium">All</span>
+      <div className="flex items-center gap-2 mb-3 p-2 bg-white rounded-md shadow-sm">
+        <span className="text-xs font-medium text-gray-600">All</span>
         <Switch
           checked={taggingMode}
           onCheckedChange={toggleTaggingMode}
           data-testid="tagging-mode-toggle"
         />
-        <span className="text-sm text-gray-600">Tagging Mode</span>
+        <span className="text-xs text-gray-600">Tagging Mode</span>
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-2">
-        {tags.map((tag) => {
-          const isRecording = activeRecording?.tagId === tag.id;
-          const isSelected = selectedTagFilter === tag.id;
-          
-          return (
-            <button
-              key={tag.id}
-              onClick={() => handleTagClick(tag)}
-              style={{
-                backgroundColor: tag.color,
-                opacity: isSelected ? 1 : taggingMode ? 0.9 : 0.7,
-                boxShadow: isRecording ? '0 0 0 3px rgba(0,0,0,0.3)' : 'none',
-              }}
-              className={`w-full p-3 rounded-lg text-white font-medium text-left transition-all hover:opacity-100 ${
-                isRecording ? 'animate-pulse' : ''
-              }`}
-              data-testid={`tag-btn-${tag.id}`}
-            >
-              <div className="flex items-center justify-between">
-                <span>{tag.name}</span>
-                {!taggingMode && (
-                  <span className="bg-white/30 px-2 py-0.5 rounded text-xs">
-                    {tag.count}
-                  </span>
-                )}
-                {isRecording && (
-                  <span className="bg-white/30 px-2 py-0.5 rounded text-xs animate-pulse">
-                    Recording...
-                  </span>
-                )}
-              </div>
-              <div className="text-xs mt-1 opacity-80">Shortcut: {tag.shortcut}</div>
-            </button>
-          );
-        })}
+      <div className="flex-1 overflow-y-auto">
+        <div className="grid grid-cols-2 gap-2">
+          {tags.map((tag) => {
+            const isRecording = activeRecording?.tagId === tag.id;
+            const isSelected = selectedTagFilter === tag.id;
+            
+            return (
+              <button
+                key={tag.id}
+                onClick={() => handleTagClick(tag)}
+                style={{
+                  backgroundColor: tag.color,
+                  opacity: isSelected ? 1 : taggingMode ? 0.9 : 0.7,
+                  boxShadow: isRecording ? '0 0 0 2px rgba(0,0,0,0.3)' : 'none',
+                }}
+                className={`p-2 rounded-md text-white font-medium text-left transition-all hover:opacity-100 text-sm ${
+                  isRecording ? 'animate-pulse' : ''
+                }`}
+                data-testid={`tag-btn-${tag.id}`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="truncate">{tag.name}</span>
+                  {!taggingMode && (
+                    <span className="bg-white/30 px-1.5 py-0.5 rounded text-xs ml-1">
+                      {tag.count}
+                    </span>
+                  )}
+                  {isRecording && (
+                    <span className="bg-white/30 px-1.5 py-0.5 rounded text-xs animate-pulse ml-1">
+                      REC
+                    </span>
+                  )}
+                </div>
+                <div className="text-xs mt-0.5 opacity-80">{tag.shortcut}</div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
       </div>
     </div>
   );
